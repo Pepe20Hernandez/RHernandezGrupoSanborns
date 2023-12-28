@@ -21,5 +21,6 @@ namespace ML
         public ML.Categories Categories { get; set; }
         public List<object> Productos { get; set; }
 
+        public int juguetes { get; set; }
     }
 }
