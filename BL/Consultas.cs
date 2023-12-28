@@ -193,5 +193,12 @@ namespace BL
 
             return result;
         }
+
+        public static ML.Result Operaciones()
+        {
+            ML.Result result = new ML.Result();
+            string f = "hola";
+            return result;
+        }
     }
 }
