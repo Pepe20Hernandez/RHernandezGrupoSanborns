@@ -1,0 +1,55 @@
+﻿@model ML.Products
+@{
+    ViewBag.Title = "GetPromedioPrecioUnitarioArticulos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <h2>Promedio de Precio Unitario de Articulos</h2>
+            <br />
+            <br />
+        </div>
+        <br />
+        <br />
+    </div>
+    @if (Model.Productos != null && Model.Productos.Count > 0)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover table-bordered" id="myTable">
+                    <thead>
+                        <tr>
+                            <th class="text-center">ProductID</th>
+                            <th class="text-center">ProductName</th>
+                            <th class="text-center">CategoryID</th>
+                            <th class="text-center">CategoryName</th>
+                            <th class="text-center">UnitPrice</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (ML.Products productos in Model.Productos)
+                        {
+                            <tr class="table-light">
+                                <td class="text-center">@productos.ProductID</td>
+                                <td class="text-center">@productos.ProductName</td>
+                                <td class="text-center">@productos.Categories.CategoryID</td>
+                                <td class="text-center">@productos.Categories.CategoryName</td>
+                                <td class="text-center">@productos.UnitPrice</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    else
+    {
+
+        <div class="alert alert-danger" role="alert">No se encontrarón registros</div>
+
+    }
+
+</div>
+

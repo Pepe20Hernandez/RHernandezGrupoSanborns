@@ -1,0 +1,101 @@
+﻿@model ML.Reporte
+@{
+    ViewBag.Title = "GetReporte";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <h2>Reporte por Año y Mes</h2>
+            <br />
+            <br />
+        </div>
+        <br />
+        <br />
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-primary bi bi-search" data-bs-toggle="modal" data-bs-target="#modalBusqueda" id="btnBusqueda"> Busqueda</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-auto">
+            <div class="modal fade" tabindex="-1" role="dialog" id="modalBusqueda">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Busqueda</h4>
+                        </div>
+                        <div class="modal-body">
+                            @using (Html.BeginForm("GetReporte", "Consultas", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <div class="row">
+                                    <div class="col-md form-inline">
+                                        @Html.Label("Año/Mes")
+                                        <select class="form-control" id="reporte" name="reportes">
+                                            <option value="">Elige una Opción</option>
+                                            <option value="1996-08">1996-08</option>
+                                            <option value="1997-12">1997-12</option>
+                                            <option value="1998-05">1998-05</option>
+                                            <option value="Todos Los Años">Todos Los Años</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary bi bi-search" id="buscar"> Buscar</button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    @if (Model.Reportes != null && Model.Reportes.Count > 0)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover table-bordered " id="myTable">
+                    <thead>
+                        <tr>
+                            <th class="text-center">FechaOrden</th>
+                            <th class="text-center">CompanyNameClient</th>
+                            <th class="text-center">OrderID</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-center">ProductName</th>
+                            <th class="text-center">CompanyNameSupplier</th>
+                            <th class="text-center">City</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (ML.Reporte reporte in Model.Reportes)
+                        {
+                            <tr class="table-light">
+                                <td class="text-center">@reporte.FechaOrden</td>
+                                <td class="text-center">@reporte.CompanyNameClient</td>
+                                <td class="text-center">@reporte.OrderID</td>
+                                <td class="text-center">@reporte.Quantity</td>
+                                <td class="text-center">@reporte.ProductName</td>
+                                <td class="text-center">@reporte.CompanyNameSupplier</td>
+                                <td class="text-center">@reporte.City</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    else
+    {
+
+        <div class="alert alert-danger" role="alert">No se encontrarón registros</div>
+
+    }
+
+</div>
+

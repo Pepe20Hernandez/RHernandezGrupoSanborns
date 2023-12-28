@@ -1,0 +1,64 @@
+﻿@model ML.Products
+@{
+    ViewBag.Title = "GetProductosDescontinuados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <h2>Productos Descontinuados</h2>
+            <br />
+            <br />
+        </div>
+        <br />
+        <br />
+    </div>
+    @if (Model.Productos != null && Model.Productos.Count > 0)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover table-bordered" id="myTable">
+                    <thead>
+                        <tr>
+                            <th class="text-center">ProductID</th>
+                            <th class="text-center">ProductName</th>
+                            <th class="text-center">SupplierID</th>
+                            <th class="text-center">CategoryID</th>
+                            <th class="text-center">QuantityPerUnit</th>
+                            <th class="text-center">UnitPrice</th>
+                            <th class="text-center">UnitsInStock</th>
+                            <th class="text-center">UnitsOnOrder</th>
+                            <th class="text-center">ReorderLevel</th>
+                            <th class="text-center">Discontinued</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (ML.Products productos in Model.Productos)
+                        {
+                            <tr class="table-light">
+                                <td class="text-center">@productos.ProductID</td>
+                                <td class="text-center">@productos.ProductName</td>
+                                <td class="text-center">@productos.Suppliers.SupplierID</td>
+                                <td class="text-center">@productos.Categories.CategoryID</td>
+                                <td class="text-center">@productos.QuantityPerUnit</td>
+                                <td class="text-center">@productos.UnitPrice</td>
+                                <td class="text-center">@productos.UnitsinStock</td>
+                                <td class="text-center">@productos.UnitsOnOrder</td>
+                                <td class="text-center">@productos.ReorderLevel</td>
+                                <td class="text-center">@productos.Discontinued</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    else
+    {
+
+        <div class="alert alert-danger" role="alert">No se encontrarón registros</div>
+
+    }
+
+</div>
